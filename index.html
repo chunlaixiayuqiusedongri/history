@@ -1,0 +1,1193 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🌟 福运宝典 · 好运测算</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&family=Noto+Serif+SC:wght@400;600;700&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Noto Serif SC', 'STSong', 'SimSun', serif;
+    background: linear-gradient(135deg, #1a0a1a 0%, #1a0a0a 30%, #0a0a1a 70%, #1a0a1a 100%);
+    color: #e8d5a3;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image:
+      radial-gradient(ellipse at 30% 20%, rgba(255, 160, 60, 0.12) 0%, transparent 50%),
+      radial-gradient(ellipse at 70% 80%, rgba(255, 100, 150, 0.10) 0%, transparent 50%),
+      radial-gradient(ellipse at 50% 50%, rgba(255, 200, 80, 0.06) 0%, transparent 60%);
+    padding: 20px;
+  }
+
+  /* 飘浮粒子 */
+  .particles {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .particle {
+    position: absolute;
+    font-size: 20px;
+    animation: floatUp 8s linear infinite;
+    opacity: 0;
+  }
+
+  @keyframes floatUp {
+    0%   { transform: translateY(100vh) scale(0); opacity: 0; }
+    10%  { opacity: 0.8; }
+    90%  { opacity: 0.2; }
+    100% { transform: translateY(-10vh) scale(1.2); opacity: 0; }
+  }
+
+  .container {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    max-width: 520px;
+    background: linear-gradient(180deg, rgba(35, 15, 20, 0.95), rgba(25, 10, 15, 0.98));
+    border: 2px solid #c8a84e;
+    border-radius: 20px;
+    padding: 40px 36px;
+    box-shadow:
+      0 0 50px rgba(220, 160, 60, 0.25),
+      0 0 100px rgba(200, 100, 50, 0.1),
+      inset 0 1px 0 rgba(255, 200, 100, 0.15);
+  }
+
+  .container::before {
+    content: '';
+    position: absolute;
+    top: -1px; left: 30px; right: 30px;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, #ffb347, #ffd700, #ffb347, transparent);
+    border-radius: 2px;
+  }
+
+  .container::after {
+    content: '';
+    position: absolute;
+    bottom: -1px; left: 30px; right: 30px;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, #ffb347, #ffd700, #ffb347, transparent);
+    border-radius: 2px;
+  }
+
+  /* 标题 */
+  .header { text-align: center; margin-bottom: 32px; }
+
+  .header .icon {
+    font-size: 56px;
+    margin-bottom: 8px;
+    animation: bounce 2s ease-in-out infinite;
+    display: inline-block;
+  }
+
+  @keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+  }
+
+  .header h1 {
+    font-family: 'Ma Shan Zheng', 'STKaiti', 'KaiTi', cursive;
+    font-size: 40px;
+    font-weight: 400;
+    background: linear-gradient(180deg, #ffd700, #ffb347, #ff8c00);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    letter-spacing: 6px;
+  }
+
+  .header .subtitle {
+    font-size: 14px;
+    color: #c8a84e;
+    margin-top: 6px;
+    letter-spacing: 4px;
+  }
+
+  .divider {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 8px 0 28px;
+    color: #ffb347;
+    font-size: 14px;
+  }
+  .divider::before, .divider::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, #c8a84e, transparent);
+  }
+
+  /* 表单 */
+  .form-group { margin-bottom: 20px; }
+
+  .form-group label {
+    display: block;
+    font-size: 14px;
+    color: #ffb347;
+    margin-bottom: 8px;
+    letter-spacing: 2px;
+    font-weight: 600;
+  }
+
+  .form-group label .required {
+    color: #ff6b6b;
+    margin-left: 2px;
+  }
+
+  .input-row {
+    display: flex;
+    gap: 12px;
+  }
+  .input-row > * { flex: 1; }
+
+  select, input {
+    width: 100%;
+    padding: 13px 16px;
+    background: rgba(30, 15, 10, 0.7);
+    border: 1.5px solid #6b3a2a;
+    border-radius: 10px;
+    color: #f0e0c0;
+    font-size: 15px;
+    font-family: inherit;
+    outline: none;
+    transition: all 0.3s;
+    cursor: pointer;
+    -webkit-appearance: none;
+    appearance: none;
+  }
+
+  select {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23ffb347' fill='none' stroke-width='1.5'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 14px center;
+    padding-right: 40px;
+  }
+
+  select:focus, input:focus {
+    border-color: #ffb347;
+    box-shadow: 0 0 20px rgba(255, 180, 60, 0.2);
+  }
+
+  select option { background: #2a1510; color: #f0e0c0; }
+
+  /* 性别选择 */
+  .gender-group { display: flex; gap: 16px; }
+
+  .gender-btn {
+    flex: 1;
+    padding: 16px;
+    background: rgba(30, 15, 10, 0.7);
+    border: 1.5px solid #6b3a2a;
+    border-radius: 10px;
+    color: #a08060;
+    font-size: 16px;
+    font-family: inherit;
+    cursor: pointer;
+    text-align: center;
+    transition: all 0.3s;
+    letter-spacing: 2px;
+  }
+
+  .gender-btn:hover {
+    border-color: #ffb347;
+    color: #ffb347;
+    transform: translateY(-2px);
+  }
+
+  .gender-btn.active {
+    border-color: #ffb347;
+    background: rgba(255, 160, 40, 0.15);
+    color: #ffd700;
+    box-shadow: 0 0 20px rgba(255, 180, 60, 0.2);
+    transform: translateY(-2px);
+  }
+
+  .gender-btn .emoji {
+    font-size: 28px;
+    display: block;
+    margin-bottom: 4px;
+  }
+
+  /* 提交按钮 */
+  .submit-btn {
+    width: 100%;
+    padding: 18px;
+    margin-top: 12px;
+    background: linear-gradient(135deg, #c0392b, #e74c3c, #c0392b);
+    border: none;
+    border-radius: 12px;
+    color: #fff;
+    font-size: 20px;
+    font-family: 'Ma Shan Zheng', 'STKaiti', 'KaiTi', cursive;
+    letter-spacing: 8px;
+    cursor: pointer;
+    transition: all 0.4s;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(200, 50, 30, 0.3);
+  }
+
+  .submit-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 30px rgba(230, 80, 50, 0.45);
+  }
+
+  .submit-btn:active { transform: translateY(-1px); }
+
+  .submit-btn::after {
+    content: '';
+    position: absolute;
+    top: -50%; left: -50%;
+    width: 200%; height: 200%;
+    background: linear-gradient(45deg, transparent 40%, rgba(255,255,255,0.15) 50%, transparent 60%);
+    animation: shimmer 2s infinite;
+  }
+
+  @keyframes shimmer {
+    0% { transform: translateX(-100%) rotate(45deg); }
+    100% { transform: translateX(100%) rotate(45deg); }
+  }
+
+  /* 结果区 */
+  .result-section {
+    display: none;
+    margin-top: 30px;
+    animation: fadeInUp 0.8s ease-out;
+  }
+
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .result-header { text-align: center; margin-bottom: 24px; }
+
+  .result-header .greeting {
+    font-size: 22px;
+    color: #ffd700;
+    margin-bottom: 6px;
+    letter-spacing: 3px;
+    font-weight: 600;
+  }
+
+  .result-header .info-line {
+    font-size: 13px;
+    color: #b89060;
+    letter-spacing: 2px;
+    margin-bottom: 4px;
+  }
+
+  .result-header .ba-zi {
+    font-size: 20px;
+    color: #ffd700;
+    letter-spacing: 4px;
+    font-weight: 600;
+    margin: 10px 0;
+  }
+
+  /* 总评 */
+  .overall-luck {
+    text-align: center;
+    padding: 20px;
+    margin-bottom: 20px;
+    background: linear-gradient(135deg, rgba(255,180,40,0.08), rgba(255,200,100,0.04));
+    border: 1px solid rgba(255,180,60,0.2);
+    border-radius: 12px;
+  }
+
+  .overall-luck .big-stars {
+    font-size: 36px;
+    letter-spacing: 6px;
+    margin-bottom: 8px;
+  }
+
+  .overall-luck .overall-text {
+    font-size: 16px;
+    color: #ffd700;
+    letter-spacing: 2px;
+    font-weight: 600;
+  }
+
+  /* 运势卡片 */
+  .fortune-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .fortune-card {
+    background: linear-gradient(135deg, rgba(40, 20, 15, 0.6), rgba(25, 12, 8, 0.8));
+    border: 1px solid rgba(200, 150, 60, 0.3);
+    border-radius: 14px;
+    padding: 24px;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+
+  .fortune-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px rgba(200, 120, 40, 0.15);
+  }
+
+  .fortune-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 4px; height: 100%;
+    border-radius: 2px 0 0 2px;
+  }
+
+  .fortune-card.career::before { background: linear-gradient(180deg, #ff6b6b, #ee5a24); }
+  .fortune-card.love::before   { background: linear-gradient(180deg, #fd79a8, #e84393); }
+  .fortune-card.wealth::before  { background: linear-gradient(180deg, #fdcb6e, #f39c12); }
+
+  .card-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 14px;
+  }
+
+  .card-icon { font-size: 30px; }
+
+  .card-title {
+    font-size: 19px;
+    font-weight: 700;
+    letter-spacing: 3px;
+  }
+
+  .card-career .card-title { color: #ff7675; }
+  .card-love .card-title   { color: #fd79a8; }
+  .card-wealth .card-title  { color: #ffeaa7; }
+
+  .star-rating {
+    display: flex;
+    gap: 4px;
+    margin-left: auto;
+  }
+
+  .star {
+    font-size: 18px;
+    color: #3a2010;
+    transition: color 0.3s;
+  }
+  .star.filled { color: #ffd700; text-shadow: 0 0 8px rgba(255,215,0,0.4); }
+
+  .card-content {
+    font-size: 14px;
+    line-height: 2;
+    color: #d4c0a0;
+    letter-spacing: 1px;
+  }
+
+  .card-content .highlight {
+    color: #ffd700;
+    font-weight: 600;
+  }
+
+  .card-content .reminder {
+    display: block;
+    margin-top: 10px;
+    padding: 8px 14px;
+    background: rgba(255, 200, 100, 0.06);
+    border-left: 2px solid rgba(255, 180, 60, 0.3);
+    border-radius: 0 8px 8px 0;
+    color: #c8a060;
+    font-size: 13px;
+    letter-spacing: 1px;
+  }
+
+  .card-content .reminder::before {
+    content: '💡 小提醒：';
+    color: #ffb347;
+    font-size: 12px;
+    letter-spacing: 1px;
+  }
+
+  .card-tag {
+    display: inline-block;
+    padding: 4px 12px;
+    margin: 6px 4px;
+    background: rgba(255, 180, 60, 0.12);
+    border: 1px solid rgba(255, 180, 60, 0.25);
+    border-radius: 20px;
+    font-size: 12px;
+    color: #f0c060;
+    letter-spacing: 1px;
+  }
+
+  /* 幸运锦囊 */
+  .lucky-box {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin-top: 20px;
+  }
+
+  .lucky-item {
+    text-align: center;
+    padding: 14px 10px;
+    background: rgba(255, 180, 60, 0.06);
+    border: 1px solid rgba(255, 180, 60, 0.15);
+    border-radius: 10px;
+  }
+
+  .lucky-item .lucky-icon {
+    font-size: 24px;
+    margin-bottom: 4px;
+  }
+
+  .lucky-item .lucky-label {
+    font-size: 11px;
+    color: #a08060;
+    letter-spacing: 2px;
+    margin-bottom: 4px;
+  }
+
+  .lucky-item .lucky-value {
+    font-size: 16px;
+    color: #ffd700;
+    font-weight: 600;
+    letter-spacing: 1px;
+  }
+
+  /* 重新测算按钮 */
+  .retry-btn {
+    display: none;
+    width: 100%;
+    padding: 14px;
+    margin-top: 24px;
+    background: transparent;
+    border: 1.5px solid #6b3a2a;
+    border-radius: 10px;
+    color: #c8a060;
+    font-size: 15px;
+    font-family: inherit;
+    letter-spacing: 4px;
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+
+  .retry-btn:hover {
+    border-color: #ffb347;
+    color: #ffd700;
+    background: rgba(255, 180, 60, 0.06);
+  }
+
+  /* 加载动画 */
+  .loading-overlay {
+    display: none;
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(8, 3, 3, 0.85);
+    z-index: 100;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+  .loading-overlay.show { display: flex; }
+
+  .yinyang-spinner {
+    width: 70px; height: 70px;
+    border-radius: 50%;
+    background: conic-gradient(#ffd700 0deg 180deg, #8b2500 180deg 360deg);
+    animation: spin 1.5s linear infinite;
+    position: relative;
+    box-shadow: 0 0 30px rgba(255, 200, 50, 0.4);
+  }
+  .yinyang-spinner::after {
+    content: '';
+    position: absolute;
+    width: 18px; height: 18px;
+    border-radius: 50%;
+    background: #8b2500;
+    top: 11px; left: 50%;
+    transform: translateX(-50%);
+    box-shadow: 0 35px 0 #ffd700;
+  }
+
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  .loading-text {
+    margin-top: 22px;
+    color: #ffb347;
+    letter-spacing: 4px;
+    font-size: 15px;
+    animation: pulse 1.5s ease-in-out infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+  }
+
+  /* 八字排盘 */
+  .bazi-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 14px 0;
+    font-size: 13px;
+  }
+
+  .bazi-table th {
+    color: #a08060;
+    font-weight: 400;
+    padding: 8px;
+    letter-spacing: 3px;
+    font-size: 12px;
+    border-bottom: 1px solid rgba(200, 150, 60, 0.2);
+  }
+
+  .bazi-table td {
+    text-align: center;
+    padding: 10px 8px;
+    color: #f0e0c0;
+    letter-spacing: 2px;
+    font-size: 17px;
+  }
+
+  .bazi-table .heavenly { color: #ffd700; font-weight: 600; }
+  .bazi-table .earthly { color: #e0a040; }
+
+  /* 响应式 */
+  @media (max-width: 480px) {
+    .container { padding: 28px 18px; }
+    .header h1 { font-size: 32px; letter-spacing: 4px; }
+    .input-row { flex-direction: column; gap: 8px; }
+    .lucky-box { grid-template-columns: repeat(3, 1fr); gap: 6px; }
+    .lucky-item { padding: 10px 6px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- 飘浮粒子 -->
+<div class="particles" id="particles"></div>
+
+<div class="container">
+
+  <!-- 头部 -->
+  <div class="header">
+    <div class="icon">🔮</div>
+    <h1>福运宝典</h1>
+    <p class="subtitle">· 好运测算 · 开心就好 ·</p>
+  </div>
+
+  <div class="divider">✨</div>
+
+  <!-- 表单 -->
+  <form id="fortuneForm">
+    <div class="form-group">
+      <label>📅 出生日期 <span class="required">*</span></label>
+      <input type="date" id="birthDate" required>
+    </div>
+
+    <div class="form-group">
+      <label>⏰ 出生时辰 <span class="required">*</span></label>
+      <select id="birthTime" required>
+        <option value="">请选择时辰</option>
+        <option value="0">🌙 子时 (23:00 - 01:00) — 夜半</option>
+        <option value="1">🌙 丑时 (01:00 - 03:00) — 鸡鸣</option>
+        <option value="2">🌅 寅时 (03:00 - 05:00) — 平旦</option>
+        <option value="3">🌅 卯时 (05:00 - 07:00) — 日出</option>
+        <option value="4">☀️ 辰时 (07:00 - 09:00) — 食时</option>
+        <option value="5">☀️ 巳时 (09:00 - 11:00) — 隅中</option>
+        <option value="6">☀️ 午时 (11:00 - 13:00) — 日中</option>
+        <option value="7">🌤 未时 (13:00 - 15:00) — 日昳</option>
+        <option value="8">🌤 申时 (15:00 - 17:00) — 晡时</option>
+        <option value="9">🌅 酉时 (17:00 - 19:00) — 日入</option>
+        <option value="10">🌙 戌时 (19:00 - 21:00) — 黄昏</option>
+        <option value="11">🌙 亥时 (21:00 - 23:00) — 人定</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label>👤 性别 <span class="required">*</span></label>
+      <div class="gender-group">
+        <div class="gender-btn" data-gender="male" onclick="selectGender('male', this)">
+          <span class="emoji">🙋‍♂️</span> 男
+        </div>
+        <div class="gender-btn" data-gender="female" onclick="selectGender('female', this)">
+          <span class="emoji">🙋‍♀️</span> 女
+        </div>
+      </div>
+      <input type="hidden" id="gender" value="">
+    </div>
+
+    <button type="submit" class="submit-btn">✨ 开 始 测 算 ✨</button>
+  </form>
+
+  <!-- 结果 -->
+  <div class="result-section" id="resultSection">
+    <div class="result-header">
+      <p class="greeting" id="greetingText"></p>
+      <p class="info-line" id="resultInfo"></p>
+      <div class="ba-zi" id="baziDisplay"></div>
+    </div>
+
+    <table class="bazi-table" id="baziTable" style="display:none;">
+      <thead>
+        <tr><th>年柱</th><th>月柱</th><th>日柱</th><th>时柱</th></tr>
+      </thead>
+      <tbody>
+        <tr id="heavenlyRow"></tr>
+        <tr id="earthlyRow"></tr>
+      </tbody>
+    </table>
+
+    <!-- 综合运势总评 -->
+    <div class="overall-luck" id="overallLuck"></div>
+
+    <!-- 运势卡片 -->
+    <div class="fortune-cards" id="fortuneCards"></div>
+
+    <!-- 幸运锦囊 -->
+    <div class="lucky-box" id="luckyBox"></div>
+
+    <button class="retry-btn" id="retryBtn" onclick="resetForm()">🔄 重新测算</button>
+  </div>
+</div>
+
+<!-- 加载层 -->
+<div class="loading-overlay" id="loadingOverlay">
+  <div class="yinyang-spinner"></div>
+  <p class="loading-text">✨ 天机推演中...</p>
+</div>
+
+<script>
+// ========== 背景粒子动画 ==========
+(function initParticles() {
+  const container = document.getElementById('particles');
+  const emojis = ['✨', '⭐', '🌟', '💫', '🔮', '🍀', '💎', '🌈', '🪐', '💖', '🎀', '🌺'];
+  for (let i = 0; i < 30; i++) {
+    const p = document.createElement('span');
+    p.className = 'particle';
+    p.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+    p.style.left = Math.random() * 100 + '%';
+    p.style.animationDelay = Math.random() * 8 + 's';
+    p.style.animationDuration = (6 + Math.random() * 10) + 's';
+    p.style.fontSize = (14 + Math.random() * 18) + 'px';
+    container.appendChild(p);
+  }
+})();
+
+// ========== 数据定义 ==========
+
+const HEAVENLY_STEMS = ['甲', '乙', '丙', '丁', '戊', '己', '庚', '辛', '壬', '癸'];
+const EARTHLY_BRANCHES = ['子', '丑', '寅', '卯', '辰', '巳', '午', '未', '申', '酉', '戌', '亥'];
+const ZODIAC = ['鼠', '牛', '虎', '兔', '龙', '蛇', '马', '羊', '猴', '鸡', '狗', '猪'];
+
+const STEM_ELEMENT = {
+  '甲':'木', '乙':'木', '丙':'火', '丁':'火', '戊':'土',
+  '己':'土', '庚':'金', '辛':'金', '壬':'水', '癸':'水'
+};
+
+const BRANCH_ELEMENT = {
+  '子':'水', '丑':'土', '寅':'木', '卯':'木', '辰':'土', '巳':'火',
+  '午':'火', '未':'土', '申':'金', '酉':'金', '戌':'土', '亥':'水'
+};
+
+const ELEMENT_COLORS = {
+  '金': '#ffeaa7', '木': '#55efc4', '水': '#74b9ff', '火': '#ff7675', '土': '#fdcb6e'
+};
+
+// 天干吉言
+const STEM_BLESSINGS = {
+  '甲': '栋梁之才，天生领袖气质',
+  '乙': '柔韧有谋，以柔克刚之智',
+  '丙': '光芒万丈，热情照亮四方',
+  '丁': '心灯长明，智慧温润如玉',
+  '戊': '厚重如山，诚信可靠之人',
+  '己': '温厚包容，润物无声之德',
+  '庚': '刚毅果决，大刀阔斧之才',
+  '辛': '精雕细琢，独具匠心之美',
+  '壬': '智慧如海，胸怀宽广之量',
+  '癸': '细腻灵动，润泽万物之善'
+};
+
+// ========== 工具函数 ==========
+
+function getZodiac(year) { return ZODIAC[(year - 4) % 12]; }
+function getYearStem(year) { return HEAVENLY_STEMS[(year - 4) % 10]; }
+function getYearBranch(year) { return EARTHLY_BRANCHES[(year - 4) % 12]; }
+
+function getMonthBranch(month) {
+  const idx = [2,3,4,5,6,7,8,9,10,11,0,1][month - 1];
+  return EARTHLY_BRANCHES[idx];
+}
+
+function getMonthStem(yearStem, month) {
+  const baseMap = [2, 4, 6, 8, 0];
+  const base = baseMap[Math.floor(HEAVENLY_STEMS.indexOf(yearStem) / 2)];
+  return HEAVENLY_STEMS[(base + month - 1) % 10];
+}
+
+function getDayPillar(year, month, day) {
+  const date = new Date(year, month - 1, day);
+  const base = new Date(1900, 0, 1);
+  const diff = Math.floor((date - base) / 86400000);
+  return {
+    stem: HEAVENLY_STEMS[((diff % 10) + 10) % 10],
+    branch: EARTHLY_BRANCHES[((diff % 12) + 10) % 12]
+  };
+}
+
+function getTimeStem(dayStem, timeIdx) {
+  const baseMap = [0, 2, 4, 6, 8];
+  const base = baseMap[Math.floor(HEAVENLY_STEMS.indexOf(dayStem) / 2)];
+  return HEAVENLY_STEMS[(base + timeIdx) % 10];
+}
+
+function hashFromInput(year, month, day, timeIdx, gender) {
+  const str = `${year}-${month}-${day}-${timeIdx}-${gender}`;
+  let h = 0;
+  for (let i = 0; i < str.length; i++) { h = ((h << 5) - h) + str.charCodeAt(i); h |= 0; }
+  return Math.abs(h);
+}
+
+function seededRandom(seed) {
+  seed = (seed * 9301 + 49297) % 233280;
+  return seed / 233280;
+}
+
+// ========== 运势分析引擎（乐观版）==========
+
+function analyzeFortune(year, month, day, timeIdx, gender) {
+  const zodiac = getZodiac(year);
+  const yearStem = getYearStem(year);
+  const yearBranch = getYearBranch(year);
+  const monthStem = getMonthStem(yearStem, month);
+  const monthBranch = getMonthBranch(month);
+  const dayPillar = getDayPillar(year, month, day);
+  const timeStem = getTimeStem(dayPillar.stem, timeIdx);
+  const timeBranch = EARTHLY_BRANCHES[timeIdx];
+
+  const dayMaster = STEM_ELEMENT[dayPillar.stem];
+  const seed = hashFromInput(year, month, day, timeIdx, gender);
+
+  // 五行统计
+  const elemCount = { '金':0, '木':0, '水':0, '火':0, '土':0 };
+  [yearStem, monthStem, dayPillar.stem, timeStem].forEach(s => elemCount[STEM_ELEMENT[s]]++);
+  [yearBranch, monthBranch, dayPillar.branch, timeBranch].forEach(b => elemCount[BRANCH_ELEMENT[b]]++);
+
+  // 运势分数 - 乐观版：最低3星，大部分4-5星
+  const rng = (offset) => seededRandom(seed + offset);
+
+  const careerScore = Math.min(5, Math.max(3, Math.round(3.5 + rng(1) * 2)));
+  const loveScore   = Math.min(5, Math.max(3, Math.round(3.5 + rng(2) * 2.2)));
+  const wealthScore = Math.min(5, Math.max(3, Math.round(3.5 + rng(3) * 2)));
+
+  // 综合评分
+  const overallScore = Math.round((careerScore + loveScore + wealthScore) / 3);
+
+  // 幸运元素
+  const luckyColor = ['红色', '金色', '蓝色', '绿色', '紫色', '粉色', '橙色', '天蓝', '玫红', '翠绿'][Math.floor(rng(10) * 10)];
+  const luckyNumber = Math.floor(rng(11) * 99) + 1;
+  const luckyDirection = ['东方', '南方', '西方', '北方', '东南', '西南', '东北', '西北'][Math.floor(rng(12) * 8)];
+  const luckyGem = ['黄水晶', '紫水晶', '月光石', '黑曜石', '粉晶', '翡翠', '玛瑙', '红纹石', '绿松石', '琥珀'][Math.floor(rng(13) * 10)];
+
+  // 贵人属相
+  const triads = [['猴','鼠','龙'], ['蛇','鸡','牛'], ['虎','马','狗'], ['猪','兔','羊']];
+  let guiren = '马';
+  for (const t of triads) {
+    if (t.includes(zodiac)) { guiren = t.filter(z => z !== zodiac)[Math.floor(rng(14) * 2) % 2]; break; }
+  }
+
+  return {
+    bazi: {
+      year: { stem: yearStem, branch: yearBranch },
+      month: { stem: monthStem, branch: monthBranch },
+      day: { stem: dayPillar.stem, branch: dayPillar.branch },
+      time: { stem: timeStem, branch: timeBranch }
+    },
+    zodiac,
+    dayMaster,
+    elemCount,
+    careerScore,
+    loveScore,
+    wealthScore,
+    overallScore,
+    luckyColor,
+    luckyNumber,
+    luckyDirection,
+    luckyGem,
+    guiren,
+    seed,
+    month, day, timeIdx, gender
+  };
+}
+
+// ========== 生成乐观运势文案 ==========
+
+function generateCareerText(a) {
+  const rng = (o) => seededRandom(a.seed + o);
+  const { careerScore, dayMaster, elemCount, zodiac } = a;
+
+  const titles = {
+    3: '事业运势稳中有升，未来可期 ✨',
+    4: '事业运势如日中天，贵人相助 🚀',
+    5: '事业运势光芒万丈，大展宏图 🌟'
+  };
+
+  const bodies = {
+    3: [
+      `您天生具备<span class="highlight">坚韧不拔</span>的品质，事业的根基正在稳步筑牢。`,
+      `日主<span class="highlight">${dayMaster}</span>命格，${STEM_BLESSINGS[a.bazi.day.stem] || '才德兼备'}。`,
+      `今年事业渐入佳境，尤其适合在<span class="highlight">团队合作</span>中展现才华，升职加薪已在路上！`
+    ],
+    4: [
+      `命带<span class="highlight">将星</span>，天生具备领导才能与远见卓识，事业如虎添翼！`,
+      `日主<span class="highlight">${dayMaster}</span>旺相，${STEM_BLESSINGS[a.bazi.day.stem] || '天赋异禀'}。`,
+      `贵人运极旺！属<span class="highlight">${a.guiren}</span>之人将是您的职场贵人，合作共赢指日可待。`
+    ],
+    5: [
+      `格局<span class="highlight">非凡</span>，天生为大事而生，事业成就不可限量！`,
+      `日主<span class="highlight">${dayMaster}</span>得令得势，${STEM_BLESSINGS[a.bazi.day.stem] || '人中龙凤'}。`,
+      `机遇之门已经敞开，大胆迈出舒适区，<span class="highlight">跨界发展</span>将带来意想不到的惊喜！`
+    ]
+  };
+
+  const reminders = {
+    3: '偶尔放慢脚步也无妨，休息是为了更好的出发哦～',
+    4: '锋芒毕露时也别忘了倾听身边人的建议，集思广益更上一层楼～',
+    5: '站得高看得远，偶尔回头望望最初的初心，会走得更稳更远～'
+  };
+
+  return {
+    title: titles[careerScore],
+    lines: bodies[careerScore],
+    reminder: reminders[careerScore],
+    tags: ['贵人运旺', '升职加薪', `喜用${dayMaster}`, '前途无量']
+  };
+}
+
+function generateLoveText(a) {
+  const rng = (o) => seededRandom(a.seed + o);
+  const { loveScore, zodiac, gender } = a;
+
+  const titles = {
+    3: '桃花含苞待放，良缘正在路上 💕',
+    4: '桃花朵朵盛开，缘分天定良人将至 💖',
+    5: '桃花满天飞舞，天作之合羡煞旁人 💘'
+  };
+
+  const bodies = {
+    3: [
+      `您的爱情观<span class="highlight">真诚而温暖</span>，值得最好的缘分。`,
+      `不将就的爱情最美，<span class="highlight">宁缺毋滥</span>是您最大的魅力。`,
+      `缘分正在悄然靠近，今年<span class="highlight">春夏之交</span>或将迎来心动时刻！`,
+      `与属<span class="highlight">${a.guiren}</span>之人特别投缘，一见如故的感觉最珍贵。`
+    ],
+    4: [
+      `<span class="highlight">桃花星入命</span>，异性缘极佳，走到哪里都是焦点！`,
+      gender === 'male'
+        ? '绅士风度加上真诚的心，让您在异性眼中格外迷人。'
+        : '独特的气质与温柔的力量，让您自带光环吸引良缘。',
+      `已有伴侣者感情<span class="highlight">甜蜜升温</span>，适合规划共同的未来。`,
+      `单身者今年极有可能遇到<span class="highlight">命中注定</span>的那个人，做自己就好！`
+    ],
+    5: [
+      `<span class="highlight">天喜红鸾</span>双星照命，桃花运旺到爆棚！`,
+      '人见人爱花见花开，走到哪里都是<span class="highlight">全场焦点</span>～',
+      `与属<span class="highlight">${a.guiren}</span>之人是天作之合，灵魂契合度满分！`,
+      '已婚者家庭和睦幸福美满，单身者追求者排长队，尽情享受被爱的感觉吧！'
+    ]
+  };
+
+  const reminders = {
+    3: '好饭不怕晚，对的人正在以你喜欢的速度向你走来～',
+    4: '桃花多的时候更要听从内心，选那个让你笑得最开心的人～',
+    5: '被很多人喜欢是幸福，记得把温柔留给最值得的那个人哦～'
+  };
+
+  return {
+    title: titles[loveScore],
+    lines: bodies[loveScore],
+    reminder: reminders[loveScore],
+    tags: ['桃花旺盛', '良缘天定', `喜配${a.guiren}`, '幸福美满']
+  };
+}
+
+function generateWealthText(a) {
+  const rng = (o) => seededRandom(a.seed + o);
+  const { wealthScore, dayMaster, elemCount } = a;
+
+  const titles = {
+    3: '财源稳步增长，小富即安最幸福 💰',
+    4: '财运亨通八方来财，富贵可期 🪙',
+    5: '财星高照日进斗金，富贵命格 💎'
+  };
+
+  const bodies = {
+    3: [
+      `正财运<span class="highlight">稳健有力</span>，工资奖金年年涨，幸福感满满！`,
+      `日主<span class="highlight">${dayMaster}</span>格，天生懂得<span class="highlight">细水长流</span>的理财之道。`,
+      `适合长期稳健投资，<span class="highlight">复利的魔力</span>会让您惊喜连连。`,
+      `偏财运也在悄悄萌芽，偶尔的小惊喜让生活更有滋味～`
+    ],
+    4: [
+      `<span class="highlight">财星入命</span>，正财偏财两旺，赚钱能力一流！`,
+      `敏锐的商业嗅觉加上<span class="highlight">果断的决策力</span>，财富雪球越滚越大。`,
+      `适合多元化投资，<span class="highlight">主业副业齐头并进</span>，收入翻倍不是梦！`,
+      `贵人引路财路更宽，多与属<span class="highlight">${a.guiren}</span>之人交流理财心得。`
+    ],
+    5: [
+      `<span class="highlight">财库充盈</span>，天生的聚财命格，富贵逼人！`,
+      `不仅自己财运亨通，还能<span class="highlight">旺身边人</span>，是圈子里的财神爷～`,
+      `投资眼光独到，<span class="highlight">低买高卖</span>如有神助，资产增值节节攀升。`,
+      `不动产与实业投资尤为有利，<span class="highlight">富甲一方</span>指日可待！`
+    ]
+  };
+
+  const reminders = {
+    3: '理财如种树，最好的时机是十年前，其次就是现在～',
+    4: '钱袋子鼓了，别忘了偶尔犒劳一下辛苦的自己哦～',
+    5: '富贵不忘本，分享好运会让福气越聚越多呢～'
+  };
+
+  return {
+    title: titles[wealthScore],
+    lines: bodies[wealthScore],
+    reminder: reminders[wealthScore],
+    tags: ['财源广进', '偏财旺相', `日主${dayMaster}`, '富贵吉祥']
+  };
+}
+
+// ========== 辅助函数 ==========
+
+function getOverallComment(score) {
+  const comments = {
+    5: ['🌟 顶级好运命格！', '您是被幸运之神亲吻过的人，天生自带锦鲤体质，做什么都顺风顺水！'],
+    4: ['✨ 上等好命格局！', '好运常伴左右，只要保持努力，成功与幸福都是您的囊中之物！'],
+    3: ['🍀 稳中向好运势！', '幸福也许来得慢一点，但每一步都走得踏实，属于厚积薄发型～']
+  };
+  return comments[score] || comments[3];
+}
+
+// ========== UI 逻辑 ==========
+
+let selectedGender = '';
+
+function selectGender(gender, btn) {
+  selectedGender = gender;
+  document.getElementById('gender').value = gender;
+  document.querySelectorAll('.gender-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+}
+
+function renderStars(count) {
+  return Array.from({length: 5}, (_, i) =>
+    `<span class="star${i < count ? ' filled' : ''}">★</span>`
+  ).join('');
+}
+
+function showLoading() {
+  document.getElementById('loadingOverlay').classList.add('show');
+}
+
+function hideLoading() {
+  document.getElementById('loadingOverlay').classList.remove('show');
+}
+
+function resetForm() {
+  document.getElementById('resultSection').style.display = 'none';
+  document.getElementById('retryBtn').style.display = 'none';
+  document.getElementById('fortuneForm').style.display = 'block';
+  document.getElementById('baziTable').style.display = 'none';
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function displayResults(a) {
+  const { bazi, zodiac, dayMaster, careerScore, loveScore, wealthScore, overallScore,
+          luckyColor, luckyNumber, luckyDirection, luckyGem, guiren, month, day, timeIdx, gender } = a;
+
+  // 隐藏表单
+  document.getElementById('fortuneForm').style.display = 'none';
+
+  // 问候语
+  const greetings = [
+    '🎉 哇！您的命盘太精彩了！',
+    '🌟 恭喜！这是一份让人羡慕的好命格！',
+    '✨ 太棒了！您的运势让人眼前一亮！',
+    '🍀 好运气！来看看您的专属福运解读～'
+  ];
+  document.getElementById('greetingText').textContent =
+    greetings[Math.floor(seededRandom(a.seed + 999) * greetings.length)];
+
+  // 基本信息
+  document.getElementById('resultInfo').textContent =
+    `生肖${zodiac} · 日主${dayMaster} · ${gender === 'male' ? '乾造' : '坤造'}`;
+
+  // 八字
+  const baziStr = `${bazi.year.stem}${bazi.year.branch} ${bazi.month.stem}${bazi.month.branch} ${bazi.day.stem}${bazi.day.branch} ${bazi.time.stem}${bazi.time.branch}`;
+  document.getElementById('baziDisplay').textContent = baziStr;
+
+  // 八字排盘表
+  const baziTable = document.getElementById('baziTable');
+  baziTable.style.display = 'table';
+  document.getElementById('heavenlyRow').innerHTML =
+    `<td class="heavenly">${bazi.year.stem}</td><td class="heavenly">${bazi.month.stem}</td><td class="heavenly">${bazi.day.stem}</td><td class="heavenly">${bazi.time.stem}</td>`;
+  document.getElementById('earthlyRow').innerHTML =
+    `<td class="earthly">${bazi.year.branch}</td><td class="earthly">${bazi.month.branch}</td><td class="earthly">${bazi.day.branch}</td><td class="earthly">${bazi.time.branch}</td>`;
+
+  // 综合总评
+  const [overallTitle, overallDesc] = getOverallComment(overallScore);
+  document.getElementById('overallLuck').innerHTML = `
+    <div class="big-stars">${renderStars(overallScore)}</div>
+    <div class="overall-text">${overallTitle}</div>
+    <p style="color:#d4c0a0;margin-top:8px;font-size:14px;line-height:1.8;">${overallDesc}</p>
+  `;
+
+  // 运势卡片
+  const careerText = generateCareerText(a);
+  const loveText = generateLoveText(a);
+  const wealthText = generateWealthText(a);
+
+  const cardsHtml = `
+    <div class="fortune-card career">
+      <div class="card-header">
+        <span class="card-icon">💼</span>
+        <span class="card-title card-career">事业运</span>
+        <span class="star-rating">${renderStars(careerScore)}</span>
+      </div>
+      <div class="card-content">
+        <p style="font-weight:700;font-size:16px;margin-bottom:10px;color:#ffd700;">${careerText.title}</p>
+        ${careerText.lines.map(l => `<p>${l}</p>`).join('')}
+        <span class="reminder">${careerText.reminder}</span>
+        <div style="margin-top:10px;">
+          ${careerText.tags.slice(0,3).map(t => `<span class="card-tag">${t}</span>`).join('')}
+        </div>
+      </div>
+    </div>
+
+    <div class="fortune-card love">
+      <div class="card-header">
+        <span class="card-icon">💕</span>
+        <span class="card-title card-love">爱情运</span>
+        <span class="star-rating">${renderStars(loveScore)}</span>
+      </div>
+      <div class="card-content">
+        <p style="font-weight:700;font-size:16px;margin-bottom:10px;color:#ffd700;">${loveText.title}</p>
+        ${loveText.lines.map(l => `<p>${l}</p>`).join('')}
+        <span class="reminder">${loveText.reminder}</span>
+        <div style="margin-top:10px;">
+          ${loveText.tags.slice(0,3).map(t => `<span class="card-tag">${t}</span>`).join('')}
+        </div>
+      </div>
+    </div>
+
+    <div class="fortune-card wealth">
+      <div class="card-header">
+        <span class="card-icon">💰</span>
+        <span class="card-title card-wealth">财运</span>
+        <span class="star-rating">${renderStars(wealthScore)}</span>
+      </div>
+      <div class="card-content">
+        <p style="font-weight:700;font-size:16px;margin-bottom:10px;color:#ffd700;">${wealthText.title}</p>
+        ${wealthText.lines.map(l => `<p>${l}</p>`).join('')}
+        <span class="reminder">${wealthText.reminder}</span>
+        <div style="margin-top:10px;">
+          ${wealthText.tags.slice(0,3).map(t => `<span class="card-tag">${t}</span>`).join('')}
+        </div>
+      </div>
+    </div>
+  `;
+
+  document.getElementById('fortuneCards').innerHTML = cardsHtml;
+
+  // 幸运锦囊
+  document.getElementById('luckyBox').innerHTML = `
+    <div class="lucky-item">
+      <div class="lucky-icon">🎨</div>
+      <div class="lucky-label">幸运色</div>
+      <div class="lucky-value">${luckyColor}</div>
+    </div>
+    <div class="lucky-item">
+      <div class="lucky-icon">🔢</div>
+      <div class="lucky-label">幸运数字</div>
+      <div class="lucky-value">${luckyNumber}</div>
+    </div>
+    <div class="lucky-item">
+      <div class="lucky-icon">🧭</div>
+      <div class="lucky-label">幸运方位</div>
+      <div class="lucky-value">${luckyDirection}</div>
+    </div>
+    <div class="lucky-item">
+      <div class="lucky-icon">💎</div>
+      <div class="lucky-label">幸运宝石</div>
+      <div class="lucky-value">${luckyGem}</div>
+    </div>
+    <div class="lucky-item">
+      <div class="lucky-icon">🤝</div>
+      <div class="lucky-label">贵人属相</div>
+      <div class="lucky-value">${guiren}</div>
+    </div>
+    <div class="lucky-item">
+      <div class="lucky-icon">🌟</div>
+      <div class="lucky-label">综合运势</div>
+      <div class="lucky-value">${'⭐⭐⭐⭐⭐'.slice(0, overallScore * 2)}</div>
+    </div>
+  `;
+
+  // 显示
+  const resultSection = document.getElementById('resultSection');
+  resultSection.style.display = 'block';
+  document.getElementById('retryBtn').style.display = 'block';
+
+  setTimeout(() => {
+    resultSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }, 300);
+}
+
+// ========== 表单提交 ==========
+
+document.getElementById('fortuneForm').addEventListener('submit', function(e) {
+  e.preventDefault();
+
+  const birthDate = document.getElementById('birthDate').value;
+  const birthTime = document.getElementById('birthTime').value;
+  const gender = selectedGender;
+
+  if (!birthDate) { alert('请选择出生日期～ 📅'); return; }
+  if (birthTime === '') { alert('请选择出生时辰～ ⏰'); return; }
+  if (!gender) { alert('请选择性别～ 👤'); return; }
+
+  const [y, m, d] = birthDate.split('-').map(Number);
+  if (y < 1900 || y > 2100) { alert('请选择1900年-2100年之间的日期～'); return; }
+
+  showLoading();
+
+  setTimeout(() => {
+    try {
+      const analysis = analyzeFortune(y, m, d, parseInt(birthTime), gender);
+      displayResults(analysis);
+    } catch (err) {
+      console.error(err);
+      alert('哎呀，测算出了点小问题，请重试一下～ 🙏');
+    } finally {
+      hideLoading();
+    }
+  }, 2000);
+});
+
+// ========== 初始化 ==========
+document.getElementById('birthDate').max = new Date().toISOString().split('T')[0];
+document.getElementById('birthDate').value = '2000-01-01';
+
+console.log('🔮 福运宝典 · 好运测算已就绪！');
+console.log('✨ 输入生日时辰和性别，收获满满好运气～');
+</script>
+
+</body>
+</html>
